@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from './models/product';
+import { createProduct, Product } from './models/product';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,8 @@ import { Product } from './models/product';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  newProduct = {} as Product;
+  // newProduct = {} as Product;
+  newProduct = createProduct();
 
   products: Product[] = [
     {
@@ -37,7 +38,8 @@ export class AppComponent {
   onSubmit() {
     console.log('toevoegen', this.newProduct);
     this.products.push(this.newProduct);
-    this.newProduct = {} as Product;
+    // this.newProduct = {} as Product;
+    this.newProduct = createProduct();
   }
 
 }
