@@ -7,6 +7,8 @@ import { createProduct, Product } from './models/product';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  nu = new Date();
+
   // newProduct = {} as Product;
   newProduct = createProduct();
 

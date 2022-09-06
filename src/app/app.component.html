@@ -16,9 +16,13 @@
       (click)="hoogOp(product)"
     >
       <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
-      <td>{{ product.price }}</td>
-      <td><img [src]="product.photo" [alt]="product.photo"></td>
+      <td>{{ product.name | camelcase }}</td>
+      <td>{{ product.price | currency: 'EUR' }}</td>
+      <td>
+        <img *ngIf="product.photo" [src]="product.photo" [alt]="product.photo">
+        <img *ngIf="!product.photo" src="./assets/not_available.png" alt="foto niet gevonden">
+        {{ nu | date | uppercase }}
+      </td>
     </tr>
   </tbody>
 </table>
