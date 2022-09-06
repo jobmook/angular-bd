@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from './models/product';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  products = [
+  newProduct = {} as Product;
+
+  products: Product[] = [
     {
       id: 1,
       name: 'witte thee',
@@ -27,8 +30,14 @@ export class AppComponent {
     },
   ];
 
-  hoogOp(product: any) {
+  hoogOp(product: Product) {
     product.price += 5;
+  }
+
+  onSubmit() {
+    console.log('toevoegen', this.newProduct);
+    this.products.push(this.newProduct);
+    this.newProduct = {} as Product;
   }
 
 }

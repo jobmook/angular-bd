@@ -22,3 +22,15 @@
     </tr>
   </tbody>
 </table>
+
+<hr>
+
+
+<form (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="id" [(ngModel)]="newProduct.id" name="id"><br>
+  <input type="text" placeholder="naam" [(ngModel)]="newProduct.name" name="name"><br>
+  <input type="text" placeholder="prijs" [(ngModel)]="newProduct.price" name="price">{{ newProduct.price }}<br>
+  <input type="text" placeholder="foto" [(ngModel)]="newProduct.photo" name="photo"><br>
+  <button type="submit">Voeg product toe</button>
+
+</form>
