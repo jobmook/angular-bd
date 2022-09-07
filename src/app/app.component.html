@@ -21,7 +21,6 @@
       <td>
         <img *ngIf="product.photo" [src]="product.photo" [alt]="product.photo">
         <img *ngIf="!product.photo" src="./assets/not_available.png" alt="foto niet gevonden">
-        {{ nu | date | uppercase }}
       </td>
     </tr>
   </tbody>
