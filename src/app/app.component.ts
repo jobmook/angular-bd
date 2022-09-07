@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { createProduct, Product } from './models/product';
 
 @Component({
@@ -8,21 +9,30 @@ import { createProduct, Product } from './models/product';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  // formgroup, vanuit template: [formGroup]="addProductForm"
-  // formcontrol, vanuit template: formControlName="name"
+  // In deze demo 2 hoofdrolspelers:
+  // 😎 FormGroup, vanuit template: [formGroup]="addProductForm"
+  // 😀 FormControl, vanuit template: formControlName="name"
 
-  // dirty vs pristine = inhoud control gewijzigd?
-  // touched vs untouched = control bezocht?
-  // valid vs invalid = komt inhoud control overeen met wat door de Validators wordt afgedwongen
+  // dirty    vs  pristine    = inhoud control gewijzigd?
+  // touched  vs  untouched   = control bezocht?
+  // valid    vs  invalid     = komt inhoud control overeen met wat
+  //                            door de Validators wordt afgedwongen
 
+  // 😎 FormGroup houdt waarde & validatiestatus bij voor een hele groep
   addProductForm = new FormGroup({
-    // houdt waarde & validatiestatus bij voor een hele groep
-    name: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[a-zA-Z .-]+$/),
-    ]), // houdt waarde & validatiestatus bij voor één control
-    price: new FormControl(0, Validators.required),
-    photo: new FormControl(''),
+    // 😀 FormControl houdt waarde & validatiestatus bij voor één control
+    name: new FormControl('', {
+      validators: [Validators.required, Validators.pattern(/^[a-zA-Z .-]+$/)],
+      nonNullable: true, // reset() = spring terug naar default value,
+      // in dit geval '', in plaats van naar null
+    }),
+    price: new FormControl(0, {
+      validators: [Validators.required],
+      nonNullable: true,
+    }),
+    photo: new FormControl('', {
+      nonNullable: true,
+    }),
   });
 
   products: Product[] = [
@@ -49,18 +59,24 @@ export class AppComponent {
     },
   ];
 
-  get name() { return this.addProductForm.controls.name }
-  get price() { return this.addProductForm.controls.price }
-  get photo() { return this.addProductForm.controls.photo }
+  // helper methods
+  get name() {
+    return this.addProductForm.controls.name;
+  }
+  get price() {
+    return this.addProductForm.controls.price;
+  }
+  get photo() {
+    return this.addProductForm.controls.photo;
+  }
 
   hoogOp(product: Product) {
     product.price += 5;
   }
 
   addProduct() {
-    console.log('toevoegen');
-    this.products.push(this.addProductForm.value as Product);
-    console.log(this.addProductForm.value.name);
+    const value = this.addProductForm.getRawValue();
+    this.products.push(value);
     this.addProductForm.reset();
   }
 }

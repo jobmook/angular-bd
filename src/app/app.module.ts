@@ -14,9 +14,9 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
                           // directives en pipes hier wilt gebruiken
     BrowserModule,
     FormsModule,          // voor template-driven forms: ngModel
-    ReactiveFormsModule,  // voor model-driven forms
+    ReactiveFormsModule,  // voor model-driven forms: formGroup
   ],
-  providers: [],          // services, globale settings
+  providers: [],          // services, globale settings, ...
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -43,16 +43,6 @@
       <span *ngIf="(name.touched || name.dirty) && name.invalid">*</span>
       <div *ngIf="(name.touched || name.dirty) && name.hasError('required')">Vul dit veld in</div>
       <div *ngIf="(name.touched || name.dirty) && name.hasError('pattern')">Alleen geldige tekens</div>
-      <pre>
-        <!-- Pristine? {{ addProductForm.controls.name.pristine }}
-        Dirty? {{ addProductForm.controls.name.dirty }}
-        Untouched? {{ addProductForm.controls.name.untouched }}
-        Touched? {{ addProductForm.controls.name.touched }}
-        Invalid? {{ addProductForm.controls.name.invalid }}
-        Valid?  {{ addProductForm.controls.name.valid }} -->
-        Errors? {{ addProductForm.controls.name.errors | json }}
-
-      </pre>
     </li>
     <li>
       <label for="input-price">Prijs:</label>
@@ -68,7 +58,6 @@
     <li>
       <pre>
         value: {{ addProductForm.value | json }}
-        valid: {{ addProductForm.invalid }}
       </pre>
     </li>
   </ol>

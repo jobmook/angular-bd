@@ -6,11 +6,12 @@ td img {
   background: salmon;
 }
 
+// input control (bevat geldige waarde EN is bezocht) OF
+//               (bevat geldige waarde EN is gewijzigd) 
 input.ng-valid.ng-touched, 
 input.ng-valid.ng-dirty {
   background: lightblue;
 }
-
 
 input.ng-invalid.ng-touched, 
 input.ng-invalid.ng-dirty {
