@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -13,7 +13,8 @@ import { CamelCasePipe } from './pipes/camel-case.pipe';
   imports: [              // modules waarvan je de components,
                           // directives en pipes hier wilt gebruiken
     BrowserModule,
-    FormsModule
+    FormsModule,          // voor template-driven forms: ngModel
+    ReactiveFormsModule,  // voor model-driven forms
   ],
   providers: [],          // services, globale settings
   bootstrap: [AppComponent]

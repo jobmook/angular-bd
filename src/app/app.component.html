@@ -28,12 +28,49 @@
 
 <hr>
 
+<h2>Product toevoegen</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <input type="text" placeholder="id" [(ngModel)]="newProduct.id" name="id"><br>
-  <input type="text" placeholder="naam" [(ngModel)]="newProduct.name" name="name"><br>
-  <input type="text" placeholder="prijs" [(ngModel)]="newProduct.price" name="price">{{ newProduct.price }}<br>
-  <input type="text" placeholder="foto" [(ngModel)]="newProduct.photo" name="photo"><br>
-  <button type="submit">Voeg product toe</button>
+<form 
+  [formGroup]="addProductForm"
+  (ngSubmit)="addProduct()"
+>
+  <h3>Model-driven form</h3>
+
+  <ol>
+    <li>
+      <label for="input-name">Naam:</label>
+      <input id="input-name" type="text" formControlName="name">
+      <span *ngIf="(name.touched || name.dirty) && name.invalid">*</span>
+      <div *ngIf="(name.touched || name.dirty) && name.hasError('required')">Vul dit veld in</div>
+      <div *ngIf="(name.touched || name.dirty) && name.hasError('pattern')">Alleen geldige tekens</div>
+      <pre>
+        <!-- Pristine? {{ addProductForm.controls.name.pristine }}
+        Dirty? {{ addProductForm.controls.name.dirty }}
+        Untouched? {{ addProductForm.controls.name.untouched }}
+        Touched? {{ addProductForm.controls.name.touched }}
+        Invalid? {{ addProductForm.controls.name.invalid }}
+        Valid?  {{ addProductForm.controls.name.valid }} -->
+        Errors? {{ addProductForm.controls.name.errors | json }}
+
+      </pre>
+    </li>
+    <li>
+      <label for="input-price">Prijs:</label>
+      <input id="input-price" type="number" formControlName="price">
+    </li>
+    <li>
+      <label for="input-photo">Foto:</label>
+      <input id="input-photo" type="text" formControlName="photo">
+    </li>
+    <li>
+      <button [disabled]="addProductForm.invalid">Voeg product toe</button>
+    </li>
+    <li>
+      <pre>
+        value: {{ addProductForm.value | json }}
+        valid: {{ addProductForm.invalid }}
+      </pre>
+    </li>
+  </ol>
 
 </form>

@@ -5,3 +5,14 @@ td img {
 .duur {
   background: salmon;
 }
+
+input.ng-valid.ng-touched, 
+input.ng-valid.ng-dirty {
+  background: lightblue;
+}
+
+
+input.ng-invalid.ng-touched, 
+input.ng-invalid.ng-dirty {
+  background: lightcoral;
+}
