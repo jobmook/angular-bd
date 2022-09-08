@@ -1,3 +1,12 @@
+<button (click)="toonLifecycle = !toonLifecycle">Toggle Lifecycle Component</button>
+<app-lifecycle 
+  [message]="parentMessage"
+  [products]="products"
+  *ngIf="toonLifecycle"
+></app-lifecycle>
+
+<hr>
+
 <h2>Producten</h2>
 
 <table>

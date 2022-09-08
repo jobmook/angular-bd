@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CamelCasePipe } from './pipes/camel-case.pipe';
+import { LifecycleComponent } from './components/lifecycle/lifecycle.component';
 
 @NgModule({
   declarations: [         // components, directives, pipes
     AppComponent,
-    CamelCasePipe
+    CamelCasePipe,
+    LifecycleComponent
   ],
   imports: [              // modules waarvan je de components,
                           // directives en pipes hier wilt gebruiken

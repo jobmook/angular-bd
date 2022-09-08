@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { createProduct, Product } from './models/product';
 
 @Component({
@@ -9,6 +8,13 @@ import { createProduct, Product } from './models/product';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  toonLifecycle = true;
+  parentMessage = 'Hallo vanuit parent';
+
+  toggleLifecycle(): void {
+    this.toonLifecycle = !this.toonLifecycle
+  }
+
   // In deze demo 2 hoofdrolspelers:
   // 😎 FormGroup, vanuit template: [formGroup]="addProductForm"
   // 😀 FormControl, vanuit template: formControlName="name"
